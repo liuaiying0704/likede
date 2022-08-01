@@ -1,7 +1,14 @@
 <template>
   <div class="login-container">
-    <img class="logo-login" src="@/assets/login.png" alt="">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
+    >
+      <img class="logo-login" src="@/assets/login.png" alt="" />
       <el-form-item prop="username" class="button-one">
         <span class="svg-container">
           <i class="el-icon-mobile icon" />
@@ -33,7 +40,9 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+          <svg-icon
+            :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
+          />
         </span>
       </el-form-item>
       <el-form-item prop="username">
@@ -50,10 +59,18 @@
           auto-complete="on"
         />
       </el-form-item>
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登陆</el-button>
 
+      <el-button
+        :loading="loading"
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        @click.native.prevent="handleLogin"
+        >登陆</el-button
+      >
+      
+
+      <img class="yanzheng" src="@/assets/yanzheng.png" alt="" />
     </el-form>
-    <img class="yanzheng" src="@/assets/yanzheng.png" alt="">
   </div>
 </template>
 
@@ -80,24 +97,28 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '111111'
+        password: '111111',
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [
+          { required: true, trigger: 'blur', validator: validateUsername },
+        ],
+        password: [
+          { required: true, trigger: 'blur', validator: validatePassword },
+        ],
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: undefined,
     }
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     showPwd() {
@@ -111,22 +132,25 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          this.$store
+            .dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/' })
+              this.loading = false
+            })
+            .catch(() => {
+              this.loading = false
+            })
         } else {
           console.log('error submit!!')
           return false
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -134,8 +158,8 @@ export default {
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
-$light_gray:#fff;
+$bg: #283443;
+$light_gray: #fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -144,12 +168,12 @@ $cursor: #fff;
   }
 }
 // element 字号
-.icon{
-  font-size:16px
+.icon {
+  font-size: 16px;
 }
 /* reset element-ui css */
 .login-container {
-
+  background-image: url('../../assets/background.be4fae7d.png');
   .el-input {
     display: inline-block;
     height: 47px;
@@ -171,54 +195,53 @@ $cursor: #fff;
       }
     }
   }
-  .el-input input{
-  color:#999
-     }
-// 输入框背景色
+  .el-input input {
+    color: #999;
+  }
+  // 输入框背景色
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #454545;
   }
-  .button-one{
+  .button-one {
     margin-top: 76px 0 0 0;
   }
- .el-form-item__content {
-  background-color: #fff;
-}
-.yanzheng{
-  position: absolute;
+  .el-form-item__content {
+    background-color: #fff;
+  }
+  .yanzheng {
+    position: absolute;
     top: 50%;
     left: 50%;
-   transform: translate(93px,40px);
-    }
+    transform: translate(93px, 40px);
+  }
 }
-
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
-.logo-login{
-     position: absolute;
-    top: 160px;
-    left: 50%;
-    width: 96px;
-    height: 96px;
-    transform: translateX(-50%);
-    z-index: 33;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
+.logo-login {
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  width: 96px;
+  height: 96px;
+  transform: translateX(-50%);
+  z-index: 33;
 }
 
-.el-button{
-    width: 100%;
-    height: 52px;
-    background: linear-gradient(262deg,#2e50e1,#6878f0);
-    opacity: .91;
-    border-radius: 8px;
-    color: #fff;
-    text-shadow: 0 7px 22px #cfcfcf;
+.el-button {
+  width: 100%;
+  height: 52px;
+  background: linear-gradient(262deg, #2e50e1, #6878f0);
+  opacity: 0.91;
+  border-radius: 8px;
+  color: #fff;
+  text-shadow: 0 7px 22px #cfcfcf;
 }
 .login-container {
   min-height: 100%;
@@ -227,7 +250,7 @@ $light_gray:#eee;
   overflow: hidden;
 
   .login-form {
-   width: 518px;
+    width: 518px;
     position: absolute;
     height: 388px;
     padding: 76px 35px 0;
@@ -236,12 +259,12 @@ $light_gray:#eee;
     background: #fff;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     border-radius: 10px;
   }
-.el-form-item{
-  margin-bottom: 24px;
-}
+  .el-form-item {
+    margin-bottom: 24px;
+  }
 
   .tips {
     font-size: 14px;
