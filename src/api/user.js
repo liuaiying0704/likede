@@ -1,24 +1,29 @@
 import request from '@/utils/request'
-
+/**
+ *获取验证码图片的地址
+ * @param {number} clientToken 随机数
+ * @returns Promise
+ */
+export function loginImg(clientToken) {
+  return request({
+    url: `/user-service/user/imageCode/${clientToken}`,
+    method: 'get',
+  })
+}
+/**
+ *登陆按钮
+ * @param {object} data 参数
+ * @returns
+ */
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
-    method: 'post',
-    data
+    url: `/user-service/user/login`,
+    method: 'POST',
+    data,
   })
 }
-
-export function getInfo(token) {
-  return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
-  })
-}
-
-export function logout() {
-  return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
-  })
-}
+// loginName
+// password
+// code
+// clientToken
+// loginType
