@@ -141,23 +141,27 @@ export default {
       this.$store.dispatch('user/getImgUrl', this.random)
     },
     async handleLogin() {
-      await this.$refs.loginForm.validate()
-      // 传入请求的参数，以及验证码，因此写在这里
-      this.$store.dispatch('user/getToken', {
-        loginName: this.loginForm.admin,
-        password: this.loginForm.password,
-        code: this.loginForm.yanzheng,
-        clientToken: this.random,
-        loginType: 0,
-      })
+      this.loading = true
+      try {
+        // 点击按钮，先校验正则
+        await this.$refs.loginForm.validate()
+        // 传入请求的参数，以及验证码，因此写在这里
+        await this.$store.dispatch('user/getToken', {
+          loginName: this.loginForm.admin,
+          password: this.loginForm.password,
+          code: this.loginForm.yanzheng,
+          clientToken: this.random,
+          loginType: 0,
+        })
+        this.$router.push('/')
+        this.$message.success('登陆成功')
+      } finally {
+        this.loading = false
+      }
+      // 登陆完清空
       ;(this.loginForm.admin = 'admin'),
         (this.loginForm.password = 'admin'),
         (this.loginForm.yanzheng = '')
-      if (!this.$store.state.user.token) {
-        alert(`请重新输入`)
-      } else {
-        this.$router.push('/')
-      }
     },
   },
 }

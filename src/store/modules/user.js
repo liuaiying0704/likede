@@ -21,12 +21,13 @@ export default {
     // 获取验证码
     async getImgUrl(context, random) {
       const res = await loginImg(random)
-      // console.log(res)
+      console.log(res.request.responseURL)
       context.commit('setImgUrl', res.request.responseURL)
     },
     //获取token
     async getToken(context, parmas) {
       const res = await login(parmas)
+      console.log(res)
       context.commit('setToken', res.data.token)
     },
   },
