@@ -12,10 +12,20 @@ const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // 设置axios请求的基础的基础地址
   timeout: 5000, // 定义5秒超时
 }) // 创建一个axios的实例
+
+// 请求拦截器
 service.interceptors.request.use((config) => {
   // 当前请求的配置
   if (store.state.user.token) {
-    config.headers.Authorization = 'Bearer ' + store.state.user.token
+    const currentTime = Date.now()
+    const tokenTime = getTokenTime()
+    const timeout = 10 * 1000
+    console.log(currentTime - tokenTime)
+    if (currentTime - tokenTime > timeout) {
+      console.log('跳转登陆页')
+    } else {
+      config.headers.Authorization = 'Bearer ' + store.state.user.token
+    }
   }
   return config
 }) // 请求拦截器

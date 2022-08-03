@@ -30,5 +30,9 @@ export default {
       console.log(res)
       context.commit('setToken', res.data.token)
     },
+    // logout 退出方法
+    logout(context) {
+      context.commit('setToken', '')
+    },
   },
 }
