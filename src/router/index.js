@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 引入多个模块的规则
-import strategyRouter from './modules/strategy'
+import reportRouter from './modules/report'
 import orderRouter from './modules/order'
-import accountRouter from './modules/account'
+import policyRouter from './modules/policy'
+import taskRouter from './modules/task'
+import nodeRouter from './modules/node'
+import vmRouter from './modules/vm'
+import userRouter from './modules/user'
+import skuRouter from './modules/sku'
 
 Vue.use(Router)
 
@@ -51,11 +56,11 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
     children: [
       {
-        path: 'dashboard',
-        name: 'Dashboard',
+        path: 'home',
+        name: 'home',
         component: () => import('@/views/dashboard/index'),
         meta: { title: '帝可得', icon: 'dashboard' },
       },
@@ -67,7 +72,16 @@ export const constantRoutes = [
 ]
 
 // 动态路由
-export const asyncRoutes = [strategyRouter, orderRouter, accountRouter]
+export const asyncRoutes = [
+  taskRouter,
+  nodeRouter,
+  vmRouter,
+  userRouter,
+  skuRouter,
+  policyRouter,
+  orderRouter,
+  reportRouter,
+]
 
 const createRouter = () =>
   new Router({

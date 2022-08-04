@@ -1,9 +1,5 @@
 <template>
-  <div class="dashboard-container">
-    <div class="app-container">
-      <h2>工资</h2>
-    </div>
-  </div>
+  <div>partner</div>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 import Layout from '@/layout'
 export default {
-  path: '/order',
+  path: '/order/index',
   component: Layout,
   children: [
     {

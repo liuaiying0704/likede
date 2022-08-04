@@ -14,40 +14,41 @@ const service = axios.create({
 }) // 创建一个axios的实例
 
 // 请求拦截器
-// service.interceptors.request.use((config) => {
-// 当前请求的配置
-// if (store.state.user.token) {
-// const currentTime = Date.now()
-// const tokenTime = getTokenTime()
-// const timeout = 10 * 1000
-// console.log(currentTime - tokenTime)
-// if (currentTime - tokenTime > timeout) {
-//   console.log('跳转登陆页')
-// } else {
-// config.headers.Authorization = 'Bearer ' + store.state.user.token
-// }
-// }
-// return config
-// }) // 请求拦截器
+service.interceptors.request.use((config) => {
+  // 当前请求的配置
+  // if (store.state.user.token) {
+  // const currentTime = Date.now()
+  // const tokenTime = getTokenTime()
+  // const timeout = 10 * 1000
+  // console.log(currentTime - tokenTime)
+  // if (currentTime - tokenTime > timeout) {
+  //   console.log('跳转登陆页')
+  // } else {
+  config.headers.Authorization = 'Bearer ' + store.state.user.token
+  // }
+  // }
+  return config
+}) // 请求拦截器
 
-// service.interceptors.response.use(
-// (res) => {
-//     if (res.config.url.startsWith('/api/user-service/user/imageCode/')) {
-//       return res
-//     }
-//     const { success, data, msg } = res.data
-//     if (success) {
-//       return data
-//     }
-//     Message.error(msg)
-//     return Promise.reject(new Error(msg))
-//   },
-//   // 地址和请求错误的回调
-//   (error) => {
-//     // console.dir(error)
-//     Message.error('请求异常')
-//     return Promise.reject(error)
-//   },
-// ) // 响应拦截器
+service.interceptors.response
+  .use
+  // (res) => {
+  //     if (res.config.url.startsWith('/api/user-service/user/imageCode/')) {
+  //       return res
+  //     }
+  //     const { success, data, msg } = res.data
+  //     if (success) {
+  //       return data
+  //     }
+  //     Message.error(msg)
+  //     return Promise.reject(new Error(msg))
+  //   },
+  //   // 地址和请求错误的回调
+  //   (error) => {
+  //     // console.dir(error)
+  //     Message.error('请求异常')
+  //     return Promise.reject(error)
+  //   },
+  () // 响应拦截器
 
 export default service // 导出axios实例
