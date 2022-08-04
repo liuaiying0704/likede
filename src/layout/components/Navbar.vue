@@ -11,8 +11,14 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
-          <span>欢迎</span>
+          <img
+            :src="$store.state.user.userInfo.image"
+            class="user-avatar"
+            v-imgError="defaultImg"
+          />
+          <span style="font-size: 19px"
+            >欢迎 {{ $store.state.user.userInfo.loginName }}</span
+          ><span style="font-size: 19px">退出</span>
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -37,8 +43,9 @@ import Hamburger from '@/components/Hamburger'
 export default {
   data() {
     return {
-      // defaultImg      v-imgError="defaultImg"
-      // defaultImg: 'http://likede2-admin.itheima.net/img/logo.3673fab5.png',
+      // defaultImg,
+      //      v-imgError="defaultImg"
+      defaultImg: 'http://likede2-admin.itheima.net/img/logo.3673fab5.png',
     }
   },
   components: {

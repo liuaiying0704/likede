@@ -35,7 +35,9 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
+for (let key in directives) {
+  Vue.directive(key, directives[key])
+}
 new Vue({
   el: '#app',
   router,

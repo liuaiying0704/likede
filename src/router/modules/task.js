@@ -2,7 +2,7 @@ import Layout from '@/layout'
 export default {
   path: '/task',
   component: Layout,
-  meta: { title: '工单管理' },
+  meta: { title: '工单管理', icon: 'tree' },
   children: [
     {
       path: 'business',

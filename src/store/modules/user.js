@@ -33,7 +33,7 @@ export default {
     // 获取验证码
     async getImgUrl(context, random) {
       const res = await loginImg(random)
-      console.log(res.request.responseURL)
+      // console.log(res.request.responseURL)
       context.commit('setImgUrl', res.request.responseURL)
     },
     //获取token
@@ -49,11 +49,11 @@ export default {
     },
     // 获取用户信息
     async getUserInfo(context, parmas) {
-      console.log(parmas)
-      const res = '122gghh'
-      res = await getUserInfo(parmas)
-      console.log(res)
-      context.commit('setUserInfo', res)
+      // console.log(parmas)
+      // const res = '122gghh'
+      const res = await getUserInfo(parmas)
+      // console.log(res.data)
+      context.commit('setUserInfo', res.data)
     },
   },
 }

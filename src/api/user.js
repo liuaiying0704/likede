@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import store from '@/store'
 /**
  *获取验证码图片的地址
  * @param {number} clientToken 随机数
@@ -22,11 +23,6 @@ export function login(data) {
     data,
   })
 }
-// loginName
-// password
-// code
-// clientToken
-// loginType
 
 /**
  * 获取用户基本信息
@@ -36,5 +32,8 @@ export function login(data) {
 export function getUserInfo(id) {
   return request({
     url: '/user-service/user/' + id,
+    headers: {
+      Authorization: store.state.user.token,
+    },
   })
 }
