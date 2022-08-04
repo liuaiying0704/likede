@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard-container">
-    <!-- <div class="dashboard-text">name: {{ name }}</div> -->
+    <div class="app-container">
+      <h2>工资</h2>
+    </div>
   </div>
 </template>
 

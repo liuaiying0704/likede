@@ -1,4 +1,4 @@
-import { loginImg, login } from '@/api/user'
+import { loginImg, login, getUserInfo } from '@/api/user'
 export default {
   namespaced: true,
   state: {
@@ -6,6 +6,10 @@ export default {
     imgUrl: '',
     // 获取token
     token: '',
+    // 获取userId
+    userId: '',
+    // 获取用户信息
+    userInfo: {},
   },
   mutations: {
     // 获取验证码
@@ -15,6 +19,14 @@ export default {
     // 获取token
     setToken(state, payload) {
       state.token = payload
+    },
+    setUserId(state, payload) {
+      state.userId = payload
+    },
+
+    // 获取用户信息
+    setUserInfo(state, payload) {
+      state.userInfo = payload
     },
   },
   actions: {
@@ -27,12 +39,21 @@ export default {
     //获取token
     async getToken(context, parmas) {
       const res = await login(parmas)
-      console.log(res)
+      // console.log(res)
       context.commit('setToken', res.data.token)
+      context.commit('setUserId', res.data.userId)
     },
     // logout 退出方法
     logout(context) {
       context.commit('setToken', '')
+    },
+    // 获取用户信息
+    async getUserInfo(context, parmas) {
+      console.log(parmas)
+      const res = '122gghh'
+      res = await getUserInfo(parmas)
+      console.log(res)
+      context.commit('setUserInfo', res)
     },
   },
 }

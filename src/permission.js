@@ -11,9 +11,10 @@ router.beforeEach((to, from, next) => {
   const token = store.state.user.token
   if (token) {
     //如果没有，就获取
-    // if (!store.state.user.userInfo.userId) {
-    //   store.dispatch('user/getUserInfo')
-    // }
+    if (!store.state.user.userInfo.userId) {
+      console.log(store.state.user.userInfo.userId)
+      store.dispatch('user/getUserInfo', store.state.user.userId)
+    }
     // 1登陆
     // 是否进入登陆
 

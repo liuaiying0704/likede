@@ -5,16 +5,18 @@
 //     margin-left: $sideBarWidth;
 //     position: relative;
 //   }
-
+.app-main {
+  margin-left: 176px;
+  background-color: pink;
+}
 .sidebar-container {
   transition: width 0.28s;
-  width: $sideBarWidth !important;
-
-  // background-color: #eee;
+  width: 176px !important;
+  background-color: #fff;
   height: 100%;
   position: fixed;
   font-size: 0px;
-  top: 50px;
+  top: 60px;
   bottom: 0;
   left: 0;
   z-index: 1001;
@@ -67,9 +69,10 @@
     border: none;
     height: 100%;
     width: 100% !important;
-    background-color: transparent;
+    background-color: #fff !important;
     a {
       li {
+        background-color: #fff;
         .svg-icon {
           color: black;
           font-size: 18px;
@@ -192,9 +195,9 @@
 //       width: 167px !important;
 //       color: black;
 //     }
-//     .el-menu-item * {
-//       background-color: #eee;
-//     }
+// :deep(.el-menu-item) {
+//   background-color: #eee;
+// }
 //     &.hideSidebar {
 //       .sidebar-container {
 //         pointer-events: none;

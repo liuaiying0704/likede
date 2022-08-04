@@ -27,3 +27,14 @@ export function login(data) {
 // code
 // clientToken
 // loginType
+
+/**
+ * 获取用户基本信息
+ * @param {*} id 用户id
+ * @returns Promise
+ */
+export function getUserInfo(id) {
+  return request({
+    url: '/user-service/user/' + id,
+  })
+}
